@@ -1,17 +1,17 @@
-require 'bump/tasks'
-
 def gem_name
   Dir.pwd.split('/').last
 end
 
 namespace :RestPack do
-  desc "Cut and release a new gem version"
+  desc "Bump, tag, build and release [#{gem_name}]"
   task :gem do
-    puts "Releasing a new version of #{gem_name}"
+    require 'bump/tasks'
+    puts "Releasing a new version of [#{gem_name}]"
     Rake::Task["RestPack:gem:bump"].invoke
     Rake::Task["RestPack:gem:tag"].invoke
     Rake::Task["RestPack:gem:build"].invoke
     Rake::Task["RestPack:gem:push"].invoke
+    Rake::Task["RestPack:gem:cleanup"].invoke
   end
 
   namespace :gem do
@@ -33,6 +33,10 @@ namespace :RestPack do
 
     task :bump do
       Rake::Task["bump:patch"].invoke
+    end
+
+    task :cleanup do
+      Dir.glob("#{Dir.pwd}/*.gem").each { |f| File.delete(f) }
     end
   end
 end
