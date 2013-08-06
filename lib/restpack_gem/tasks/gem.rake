@@ -1,3 +1,5 @@
+require 'bump/tasks'
+
 def gem_name
   Dir.pwd.split('/').last
 end
