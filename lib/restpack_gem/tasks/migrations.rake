@@ -1,3 +1,5 @@
+require "active_support/inflector"
+
 namespace :db do
   desc "Creates a new migration"
   task :new_migration, :name do |t, args|
