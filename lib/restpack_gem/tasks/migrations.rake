@@ -21,11 +21,7 @@ def create_migration(name)
   File.open(path, "w") do |f|
     f.write(
 %{class #{name.camelize} < ActiveRecord::Migration
-  def up
-
-  end
-
-  def down
+  def change
 
   end
 end})
