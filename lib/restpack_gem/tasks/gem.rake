@@ -2,18 +2,18 @@ def gem_name
   Dir.pwd.split('/').last
 end
 
-desc "Bump, tag, build and release [#{gem_name}]"
-task :gem do
-  require 'bump/tasks'
-  puts "Releasing a new version of [#{gem_name}]"
-  Rake::Task["gem:bump"].invoke
-  Rake::Task["gem:tag"].invoke
-  Rake::Task["gem:build"].invoke
-  Rake::Task["gem:push"].invoke
-  Rake::Task["gem:cleanup"].invoke
-end
-
 namespace :gem do
+  desc "Bump, tag, build and release [#{gem_name}]"
+  task :release do
+    require 'bump/tasks'
+    puts "Releasing a new version of [#{gem_name}]"
+    Rake::Task["gem:bump"].invoke
+    Rake::Task["gem:tag"].invoke
+    Rake::Task["gem:build"].invoke
+    Rake::Task["gem:push"].invoke
+    Rake::Task["gem:cleanup"].invoke
+  end
+
   task :build do
     sh "gem build #{gem_name}.gemspec"
   end
