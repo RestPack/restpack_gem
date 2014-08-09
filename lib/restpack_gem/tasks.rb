@@ -7,7 +7,7 @@ module RestPack::Gem
 
     def self.load_service_tasks
       self.load_tasks
-      load "restpack_gem/tasks/migrations.rake"
+      load "restpack_gem/tasks/db.rake"
     end
   end
 end

@@ -6,7 +6,7 @@ begin
 
   desc "Run all specs"
   RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = ['-cfs']
+    t.rspec_opts = ['-c']
   end
 rescue LoadError
 end
