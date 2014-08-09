@@ -5,10 +5,10 @@ def database_name
 end
 
 namespace :db do
-  desc "Creates the [#{gem_name}] database"
+  desc "Creates the [#{database_name}] database"
   task :create do
-    puts "creating `#{gem_name}`..."
-    exec "createdb #{gem_name}"
+    puts "creating `#{database_name}`..."
+    exec "createdb #{database_name}"
   end
 
   desc "Creates a new migration"
